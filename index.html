@@ -38,5 +38,30 @@
         const tele = window.Telegram.WebApp;
         tele.expand(); // Развернуть на весь экран
     </script>
-</body>
+</body>    <div id="signal-display" style="font-size: 24px; text-align: center; margin-top: 20px;">
+        Ожидание сигнала...
+    </div>
+
+    <script>
+        // ВОТ СЮДА ВСТАВЛЯЕМ ТОТ КОД:
+        function generateSignal() {
+            const signals = ["ВВЕРХ ⬆️", "ВНИЗ ⬇️", "ЖДАТЬ ⏳", "ВХОД ✅"];
+            const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+            
+            const display = document.getElementById('signal-display');
+            if (display) {
+                display.innerText = "Ближайший сигнал: " + randomSignal;
+                // Вибрация телефона через Telegram API
+                if (window.Telegram && window.Telegram.WebApp) {
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                }
+            }
+        }
+
+        // Запускать каждые 15 секунд для теста
+        setInterval(generateSignal, 15000);
+    </script>
+
+</body> </html>
+
 </html>
