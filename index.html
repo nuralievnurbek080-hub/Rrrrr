@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #0e1621; color: white; font-family: sans-serif; margin: 0; padding: 10px; }
+        .card { background: #17212b; border-radius: 12px; padding: 15px; margin-bottom: 10px; border: 1px solid #2b5278; }
+        .signal-up { color: #4caf50; font-weight: bold; }
+        .signal-down { color: #f44336; font-weight: bold; }
+        #chart-container { height: 300px; width: 100%; border-radius: 8px; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3>📊 Gemini Live Chart</h3>
+        <div id="chart-container">
+            <div id="tv-widget"></div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h3>🔔 Последний сигнал:</h3>
+        <div id="signal-log">Ожидание данных...</div>
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        // Инициализация виджета
+        new TradingView.widget({
+            "autosize": true, "symbol": "FX:EURUSD", "interval": "1",
+            "timezone": "Etc/UTC", "theme": "dark", "style": "1",
+            "container_id": "tv-widget", "hide_top_toolbar": true
+        });
+
+        // Работа с Telegram Mini App
+        const tele = window.Telegram.WebApp;
+        tele.expand(); // Развернуть на весь экран
+    </script>
+</body>
+</html>
